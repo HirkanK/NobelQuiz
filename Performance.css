@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5f8fe;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1rem;
+}
+
+.performance-container {
+  max-width: 1000px;
+  width: 100%;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.performance-container h1 {
+  text-align: center;
+  color: #3e64ff;
+  margin-bottom: 2rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.stat-card {
+  background-color: #eef3ff;
+  border-left: 6px solid #3e64ff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: scale(1.05);
+}
+
+.stat-card h2 {
+  color: #3e64ff;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.stat-card p {
+  font-size: 1.6rem;
+  color: #222;
+  font-weight: bold;
+}
+
+.actions {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.actions button {
+  background-color: #3e64ff;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  margin: 0.5rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.actions button:hover {
+  background-color: #2e4dcc;
+}

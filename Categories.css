@@ -1,0 +1,70 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0f4f8;
+  color: #333;
+  padding: 2rem;
+}
+
+.categories-container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  color: #3e64ff;
+  margin-bottom: 2rem;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.category-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-20px);
+}
+
+.category-card h2 {
+  color: #3e64ff;
+  margin-bottom: 1rem;
+}
+
+.category-card p {
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+.category-card a {
+  background-color: #3e64ff;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  text-align: center;
+  transition: background 2s;
+}
+
+.category-card a:hover {
+  background-color: #83a2f7;
+}

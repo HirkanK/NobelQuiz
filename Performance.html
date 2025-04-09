@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Performance | NobelQuiz</title>
+  <link rel="stylesheet" href="performance.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="performance-container">
+    <h1>Your Performance Report 📊</h1>
+
+    <div class="stats-grid">
+      <div class="stat-card"><h2>Total Quizzes</h2><p id="total-quizzes">--</p></div>
+      <div class="stat-card"><h2>Average Score</h2><p id="avg-score">--</p></div>
+      <div class="stat-card"><h2>Accuracy</h2><p id="accuracy">--</p></div>
+      <div class="stat-card"><h2>Best Score</h2><p id="best-score">--</p></div>
+      <div class="stat-card"><h2>Total Time Spent</h2><p id="total-time">--</p></div>
+      <div class="stat-card"><h2>Last Quiz</h2><p id="last-quiz">--</p></div>
+    </div>
+
+    <div class="actions">
+      <button onclick="window.location.href='dashboard.html'">Back to Dashboard</button>
+      <button onclick="window.location.href='quiz.html'">Take Another Quiz</button>
+    </div>
+  </div>
+
+  <script src="performance.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f7fc;
+  color: #333;
+}
+
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background-color: #3e64ff;
+  color: white;
+  padding: 2rem 1rem;
+}
+
+.sidebar h2 {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar ul li {
+  margin: 1rem 0;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  display: block;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+.sidebar ul li a:hover {
+  background-color: #2e4dcc;
+}
+
+/* Main content */
+.main-content {
+  flex-grow: 1;
+  padding: 2rem;
+}
+
+header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #3e64ff;
+}
+
+header p {
+  margin-bottom: 2rem;
+}
+
+/* Cards */
+.cards {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  min-width: 250px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h3 {
+  color: #3e64ff;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  margin-bottom: 1rem;
+}
+
+.card a {
+  background-color: #3e64ff;
+  color: white;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.card a:hover {
+  background-color: #2e4dcc;
+}
