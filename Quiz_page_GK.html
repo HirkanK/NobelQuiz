@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['student_id']) || !isset($_SESSION['student_name'])) {
+    header("Location: Student_Login_Register.html");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,7 +64,6 @@
   </style>
 </head>
 <body>
-
   <div class="quiz-container">
     <header class="text-center mb-4">
       <h1>Twistters!</h1>
@@ -67,65 +74,57 @@
     <form id="quizForm">
       <!-- Question 1 -->
       <div class="question-box active">
-        <h2>1.Which planet is known as the Red Planet??</h2>
+        <h2>1.Principal = ₹1000, Rate = 5% per annum, Time = 2 years?</h2>
         <div class="options">
-          <label><input type="radio" name="q1" value="A"> A) Venus</label>
-          <label><input type="radio" name="q1" value="B"> B) Jupiter</label>
-          <label><input type="radio" name="q1" value="C"> C) Mars</label>
-          <label><input type="radio" name="q1" value="D"> D) Saturn</label>
+          <label><input type="radio" name="q1" value="A"> A) Rs.80</label>
+          <label><input type="radio" name="q1" value="B"> B) Rs.90</label>
+          <label><input type="radio" name="q1" value="C"> C) Rs.100</label>
+          <label><input type="radio" name="q1" value="D"> D) Rs.110</label>
         </div>
       </div>
 
       <!-- Question 2 -->
       <div class="question-box">
-        <h2>2. Who invented the light bulb?</h2>
+        <h2>2. Find the HCF of 18 and 24?</h2>
         <div class="options">
-          <label><input type="radio" name="q2" value="A"> A) Alexander Graham Bell</label>
-          <label><input type="radio" name="q2" value="B"> B) Thomas Edison</label>
-          <label><input type="radio" name="q2" value="C"> C) Isaac Newton</label>
-          <label><input type="radio" name="q2" value="D"> D) Nikola Tesla</label>
+          <label><input type="radio" name="q2" value="A"> A) 3</label>
+          <label><input type="radio" name="q2" value="B"> B) 6</label>
+          <label><input type="radio" name="q2" value="C"> C) 9</label>
+          <label><input type="radio" name="q2" value="D"> D) 12</label>
         </div>
       </div>
 
       <!-- Question 3 -->
       <div class="question-box">
-        <h2>3. Which gas is most abundant in the Earth's atmosphere?</h2>
+        <h2>3. The solution of the equation 2𝑥−7=3 is:?</h2>
         <div class="options">
-          <label><input type="radio" name="q3" value="A"> A) Oxygen</label>
-          <label><input type="radio" name="q3" value="B"> B) Nitrogen</label>
-          <label><input type="radio" name="q3" value="C"> C) Carbon Dioxide</label>
-          <label><input type="radio" name="q3" value="D"> D) Hydrogen</label>
+          <label><input type="radio" name="q3" value="A"> A) 4</label>
+          <label><input type="radio" name="q3" value="B"> B) 5</label>
+          <label><input type="radio" name="q3" value="C"> C) 3</label>
+          <label><input type="radio" name="q3" value="D"> D) 2</label>
         </div>
       </div>
 
       <!-- Question 4 -->
       <div class="question-box">
-        <h2>4. Who wrote the Indian national anthem "Jana Gana Mana"?</h2>
+        <h2>4. The perimeter of a square with side 8 cm is:</h2>
         <div class="options">
-          <label><input type="radio" name="q4" value="A"> A) Bamkim Chandra Chatterjee</label>
-          <label><input type="radio" name="q4" value="B"> B) Sarojini Naidu</label>
-          <label><input type="radio" name="q4" value="C"> C) Rabindranath Tagore</label>
-          <label><input type="radio" name="q4" value="D"> D) C.V. Raman</label>
+          <label><input type="radio" name="q4" value="A"> A) 36cm</label>
+          <label><input type="radio" name="q4" value="B"> B) 32cm</label>
+          <label><input type="radio" name="q4" value="C"> C) 64cm</label>
+          <label><input type="radio" name="q4" value="D"> D) 16cm</label>
         </div>
       </div>
 
       <!-- Question 5 -->
       <div class="question-box">
-        <h2>5. Which is the longest river in the world?</h2>
+        <h2>5. The cube of 4 is:</h2>
         <div class="options">
-          <label><input type="radio" name="q5" value="A"> A) Amazon</label>
-          <label><input type="radio" name="q5" value="B"> B) Nile</label>
-          <label><input type="radio" name="q5" value="C"> C) Ganga</label>
-          <label><input type="radio" name="q5" value="D"> D) Mississippi</label>
+          <label><input type="radio" name="q5" value="A"> A) 16</label>
+          <label><input type="radio" name="q5" value="B"> B) 64</label>
+          <label><input type="radio" name="q5" value="C"> C) 46</label>
+          <label><input type="radio" name="q5" value="D"> D) 81</label>
         </div>
-      </div>
-
-
-      <div class="result-box">
-        <h1>Quiz Result</h1>
-        <p id="scoreText"></p>
-        <p id="timeTaken"></p>
-        <button class="btn-try" onclick="tryAgain()">Try Again</button>
       </div>
 
       <!-- Nav buttons -->
@@ -138,28 +137,54 @@
   </div>
 
   <script>
-    const correctAnswers = { q1: "C", q2: "B", q3: "B", q4: "C", q5: "B"};
+    // 🔐 Violation tracking logic
+    let violations = 0;
+    const studentId = <?php echo json_encode($_SESSION['student_id']); ?>;
+  
+    window.onblur = () => {
+      violations++;
+  
+      fetch('PHP_pages/record_violation.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ student_id: studentId })
+      });
+  
+      if (violations >= 3) {
+        fetch('PHP_pages/force_submit.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({ student_id: studentId })
+        }).then(() => {
+          alert('You are blocked. Admin will review.');
+          window.location.href = 'Blocked.html';
+        });
+      }
+    };
+  
+    // ✅ Quiz navigation + scoring logic
+    const correctAnswers = { q1: "C", q2: "B", q3: "B", q4: "C", q5: "B" };
     const boxes = document.querySelectorAll('.question-box');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const submitBtn = document.getElementById('submitBtn');
     let idx = 0;
-
-    // Store start time
+  
+    // Save quiz start time
     if (!localStorage.getItem("quizStartTime")) {
       localStorage.setItem("quizStartTime", new Date().toISOString());
     }
-
+  
     function render() {
       boxes.forEach((box, i) => box.classList.toggle('active', i === idx));
       prevBtn.style.display = idx === 0 ? 'none' : 'inline-block';
       nextBtn.style.display = idx === boxes.length - 1 ? 'none' : 'inline-block';
       submitBtn.style.display = idx === boxes.length - 1 ? 'inline-block' : 'none';
     }
-
+  
     prevBtn.onclick = () => { if (idx > 0) idx--; render(); };
     nextBtn.onclick = () => { if (idx < boxes.length - 1) idx++; render(); };
-
+  
     document.getElementById("quizForm").onsubmit = function(e) {
       e.preventDefault();
       const formData = new FormData(this);
@@ -170,10 +195,10 @@
       }
       window.location.href = `result.html?score=${score}&total=${total}`;
     };
-
+  
     render();
   </script>
-
+  
 
 </body>
 </html>
